@@ -93,8 +93,8 @@ core.register_node("luabutton:luaplate",{
 	local name = clicker:get_player_name()
 	local ctrl = clicker:get_player_control()
 	local meta = core.get_meta(pos)
-	if ctrl.aux1 and minetest.check_player_privs(clicker,{server=true}) then
-		minetest.show_formspec(name, "luaplate_code", "size[16,9]" ..
+	if ctrl.aux1 and core.check_player_privs(clicker,{server=true}) then
+		core.show_formspec(name, "luaplate_code", "size[16,9]" ..
 			"style[code;font=mono]" ..
 			"field[0.4,0.5;15.7,1;infotext;Infotext;"..F(meta:get_string("infotext")).."]" ..
 			"textarea[0.4,1.3;15.7,8.3;code;Variables: pos\\, player;"..F(meta:get_string("code")).."]" ..
@@ -149,8 +149,8 @@ core.register_node("luabutton:luatrigger",{
 	local name = placer:get_player_name()
 	local ctrl = placer:get_player_control()
 	local meta = core.get_meta(pos)
-	if ctrl.aux1 and minetest.check_player_privs(placer,{server=true}) and node.name == "luabutton:luatrigger" then
-		minetest.show_formspec(name, "luatrigger_code", "size[16,9]" ..
+	if ctrl.aux1 and core.check_player_privs(placer,{server=true}) and node.name == "luabutton:luatrigger" then
+		core.show_formspec(name, "luatrigger_code", "size[16,9]" ..
 			"style[code;font=mono]" ..
 			"textarea[0.4,0.3;15.7,9.1;code;Variables: pos\\, player;"..F(meta:get_string("code")).."]" ..
 			"button_exit[0.1,8.4;2,1;removetrigger;Remove trigger]" ..
@@ -159,8 +159,8 @@ core.register_node("luabutton:luatrigger",{
 		editing[name] = pos
 		return itemstack
 	elseif node.name ~= "luabutton:luatrigger" then
-		minetest.item_place(itemstack, placer, pointed_thing)
-		minetest.add_particle({
+		core.item_place(itemstack, placer, pointed_thing)
+		core.add_particle({
 			playername = name,
 			pos = pos,
 			velocity = {x=0, y=0, z=0},
@@ -196,7 +196,7 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 		timer:start(0.3)
 	end
 	if fields.removetrigger then
-		minetest.remove_node(editing[name])
+		core.remove_node(editing[name])
 		core.chat_send_player(name,"Successfuly removed trigger")
 	end
 	if fields.quit then
