@@ -1,4 +1,4 @@
-# minetest-mod-luabutton
+# LuaButton
 Button that executes custom lua code on rightclick  
 [![ContentDB](https://content.minetest.net/packages/Zemtzov7/luabutton/shields/downloads/)](https://content.minetest.net/packages/Zemtzov7/luabutton/)
 ### Nodes
